@@ -6,6 +6,8 @@ var states = {
     TOPFIVE: '_TOPFIVE',
 };
 
+var location = "Seattle";
+
 var numberOfResults = 3;
 
 var APIKey = "4844d21f760b47359945751b9f875877";
@@ -68,7 +70,7 @@ var newSessionHandlers = {
     },
     'getLatestIntent': function () {
         this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getLocalIntent');
+        this.emitWithState('getLatestIntent');
     },
     // 'getLocalIntent': function(){
     //     this.handler.state = states.SEARCHMODE;
@@ -105,7 +107,7 @@ var newSessionHandlers = {
 
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     'getLatestIntent': function () {
-        httpGet('rssFeed', function (response) {
+        httpGet(location, function (response) {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
@@ -296,7 +298,7 @@ function httpGet(query, callback) {
 
     var options = {
         host: 'dev.miamifly.net',
-        path: '/alexa/' + location + '.json',
+        path: '/alexa/mhnewsfeed.json',
         method: 'GET'
     };
 
