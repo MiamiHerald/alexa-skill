@@ -2,8 +2,7 @@ var Alexa = require('alexa-sdk');
 var http = require('http');
 
 var states = {
-    SEARCHMODE: '_SEARCHMODE',
-    TOPFIVE: '_TOPFIVE',
+    SEARCHMODE: '_SEARCHMODE'
 };
 
 var location = "Miami Herald";
