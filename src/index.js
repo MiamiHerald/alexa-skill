@@ -7,9 +7,11 @@ var states = {
 
 var numberOfResults = 5;
 
-var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for latest news, local news, sports, dolphins news, national news or say help. What will it be?";
+var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for latest news, local news, sports news, dolphins news, national news or say help. What will it be?";
 
-var welcomeRepromt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
+var welcomeReprompt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
+
+var listSectionsMessage = "Which section would you like to hear? Latest news, local news, sports news, dolphins news or national news";
 
 var HelpMessage = "Here are some things you  can say: Read me local news. Tell me the sports headlines. What is the national news. What would you like to do?";
 
@@ -19,11 +21,11 @@ var tryAgainMessage = "please try again."
 
 var noSectionErrorMessage = "There was an error finding that section, " + tryAgainMessage;
 
-var getMoreInfoRepromtMessage = "What number attraction would you like to hear about?";
+var getMoreInfoRepromptMessage = "What number attraction would you like to hear about?";
 
-var getMoreInfoMessage = "OK, " + getMoreInfoRepromtMessage;
+var getMoreInfoMessage = "OK, " + getMoreInfoRepromptMessage;
 
-var goodbyeMessage = "OK, make sure to check back for the latest updates from the Miami Herald Newsroom.";
+var goodbyeMessage = "OK, make sure to check back for the latest updates from the Miami Herald Newsroom. Goodbye.";
 
 var hearMoreMessage = "Would you like to hear about what else happening on miamiherald.com?";
 
@@ -39,7 +41,7 @@ var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
         output = welcomeMessage;
-        this.emit(':ask', output, welcomeRepromt);
+        this.emit(':ask', output, welcomeReprompt);
     },
     'getLatestIntent': function () {
         this.handler.state = states.SEARCHMODE;
@@ -61,6 +63,10 @@ var newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState('getNationalIntent');
     },
+    'listSectionsIntent': function () {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState('listSectionsIntent');
+    },
     'AMAZON.StopIntent': function () {
         this.emit(':tell', goodbyeMessage);
     },
@@ -74,7 +80,7 @@ var newSessionHandlers = {
     },
     'Unhandled': function () {
         output = HelpMessage;
-        this.emit(':ask', output, welcomeRepromt);
+        this.emit(':ask', output, welcomeReprompt);
     },
 };
 
@@ -106,8 +112,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += " Article " + index + ": " + description + breakTime;
 
                         cardContent += title + "\n";
-                        cardContent += description + "\n";
-                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
+                        cardContent += description + "\n\n";
                     }
                 }
 
@@ -146,8 +151,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += " Article " + index + ": " + description + breakTime;
 
                         cardContent += title + "\n";
-                        cardContent += description + "\n";
-                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
+                        cardContent += description + "\n\n";
                     }
                 }
 
@@ -186,8 +190,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += " Article " + index + ": " + description + breakTime;
 
                         cardContent += title + "\n";
-                        cardContent += description + "\n";
-                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
+                        cardContent += description + "\n\n";
                     }
                 }
 
@@ -226,8 +229,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += " Article " + index + ": " + description + breakTime;
 
                         cardContent += title + "\n";
-                        cardContent += description + "\n";
-                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
+                        cardContent += description + "\n\n";
                     }
                 }
 
@@ -266,8 +268,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                         output += " Article " + index + ": " + description + breakTime;
 
                         cardContent += title + "\n";
-                        cardContent += description + "\n";
-                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
+                        cardContent += description + "\n\n";
                     }
                 }
 
@@ -278,6 +279,10 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
         });
+    },
+    'listSectionsIntent': function () {
+        output = listSectionsMessage;
+        this.emit(':ask', output, HelpMessage);
     },
     'AMAZON.YesIntent': function () {
         output = HelpMessage;
@@ -307,7 +312,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     'Unhandled': function () {
         output = HelpMessage;
-        this.emit(':ask', output, welcomeRepromt);
+        this.emit(':ask', output, welcomeReprompt);
     }
 });
 
