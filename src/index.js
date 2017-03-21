@@ -6,25 +6,23 @@ var states = {
     TOPFIVE: '_TOPFIVE',
 };
 
-var location = "Seattle";
-
 var numberOfResults = 3;
 
 var APIKey = "4844d21f760b47359945751b9f875877";
 
-var welcomeMessage = location + " Guide. You can ask me for an attraction, the local news, or  say help. What will it be?";
+var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
-var welcomeRepromt = "You can ask me for an attraction, the local news, or  say help. What will it be?";
+var welcomeRepromt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
 var locationOverview = "Seattle is a West Coast seaport city and the  seat of King County. With an estimated 684,451 residents as of 2015, Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America.  What else would you like to know?";
 
-var HelpMessage = "Here are some things you  can say: Give me an attraction. Tell me about " + location + ". Tell me the top five things to do. Tell me the local news.  What would you like to do?";
+var HelpMessage = "Here are some things you  can say: Read me local news. Tell me the sports headlines. What is the national news. What would you like to do?";
 
-var moreInformation = "See your  Alexa app for  more  information."
+var moreInformation = "See your Alexa app for more information."
 
 var tryAgainMessage = "please try again."
 
-var noAttractionErrorMessage = "There was an error finding this attraction, " + tryAgainMessage;
+var noSectionErrorMessage = "There was an error finding that section, " + tryAgainMessage;
 
 var topFiveMoreInfo = " You can tell me a number for more information. For example open number one.";
 
@@ -68,14 +66,26 @@ var newSessionHandlers = {
         output = welcomeMessage;
         this.emit(':ask', output, welcomeRepromt);
     },
-    'getAttractionIntent': function () {
+    'getLatestIntent': function () {
         this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getAttractionIntent');
+        this.emitWithState('getLocalIntent');
     },
-    'getTopFiveIntent': function(){
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getTopFiveIntent');
-    },
+    // 'getLocalIntent': function(){
+    //     this.handler.state = states.SEARCHMODE;
+    //     this.emitWithState('getLocalIntent');
+    // },
+    // 'getSportsIntent': function(){
+    //     this.handler.state = states.SEARCHMODE;
+    //     this.emitWithState('getSportsIntent');
+    // },
+    // 'getDolphinsIntent': function(){
+    //     this.handler.state = states.SEARCHMODE;
+    //     this.emitWithState('getDolphinsIntent');
+    // },
+    // 'getNationalIntent': function(){
+    //     this.handler.state = states.SEARCHMODE;
+    //     this.emitWithState('getDolphinsIntent');
+    // },
     'AMAZON.StopIntent': function () {
         this.emit(':tell', goodbyeMessage);
     },
@@ -94,36 +104,91 @@ var newSessionHandlers = {
 };
 
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
-    'getOverview': function () {
-        output = locationOverview;
-        this.emit(':askWithCard', output, location, locationOverview);
-    },
-    'getAttractionIntent': function () {
-        var cardTitle = location;
-        var cardContent = "";
+    'getLatestIntent': function () {
+        httpGet('rssFeed', function (response) {
 
-        var attraction = attractions[Math.floor(Math.random() * attractions.length)];
-        if (attraction) {
-            output = attraction.name + " " + attraction.content + newline + moreInformation;
-            cardTitle = attraction.name;
-            cardContent = attraction.content + newline + attraction.contact;
+            // Parse the response into a JSON object ready to be formatted.
+            var responseData = JSON.parse(response);
+            var cardContent = "Data provided by Miami Herald\n\n";
 
-            this.emit(':tellWithCard', output, cardTitle, cardContent);
-        } else {
-            this.emit(':ask', noAttractionErrorMessage, tryAgainMessage);
-        }
-    },
-    'getTopFiveIntent': function () {
-        output = topFiveIntro;
-        var cardTitle = "Top Five Things To See in " + location;
+            // Check if we have correct data, If not create an error speech out to try again.
+            if (responseData == null) {
+                output = "There was a problem with getting data please try again";
+            }
+            else {
+                output = newsIntroMessage;
 
-        for (var counter = topFive.length - 1; counter >= 0; counter--) {
-            output += " Number " + topFive[counter].number + ": " + topFive[counter].caption + newline;
-        }
-        output += topFiveMoreInfo;
-        this.handler.state = states.TOPFIVE;
-        this.emit(':askWithCard', output, topFiveMoreInfo, cardTitle, output);
+                // If we have data.
+                for (var i = 0; i < responseData.length; i++) {
+
+                    if (i < numberOfResults) {
+                        // Get the name and description JSON structure.
+                        var headline = responseData[i].titleText;
+                        var index = i + 1;
+
+                        output += " Headline " + index + ": " + headline + ";";
+
+                        cardContent += " Headline " + index + ".\n";
+                        cardContent += headline + ".\n\n";
+                    }
+                }
+
+                output += " See your Alexa app for more information.";
+            }
+
+            var cardTitle = "Latest News";
+
+            alexa.emit(':tellWithCard', output, cardTitle, cardContent);
+        });
     },
+    // 'getLocalIntent': function () {
+    //     var cardTitle = location;
+    //     var cardContent = "";
+    //
+    //     var attraction = attractions[Math.floor(Math.random() * attractions.length)];
+    //     if (attraction) {
+    //         output = attraction.name + " " + attraction.content + newline + moreInformation;
+    //         cardTitle = attraction.name;
+    //         cardContent = attraction.content + newline + attraction.contact;
+    //
+    //         this.emit(':tellWithCard', output, cardTitle, cardContent);
+    //     } else {
+    //         this.emit(':ask', noSectionErrorMessage, tryAgainMessage);
+    //     }
+    // },
+    // 'getSportsIntent': function () {
+    //     output = topFiveIntro;
+    //     var cardTitle = "Top Five Things To See in " + location;
+    //
+    //     for (var counter = topFive.length - 1; counter >= 0; counter--) {
+    //         output += " Number " + topFive[counter].number + ": " + topFive[counter].caption + newline;
+    //     }
+    //     output += topFiveMoreInfo;
+    //     this.handler.state = states.TOPFIVE;
+    //     this.emit(':askWithCard', output, topFiveMoreInfo, cardTitle, output);
+    // },
+    // 'getDolphinsIntent': function () {
+    //     output = topFiveIntro;
+    //     var cardTitle = "Top Five Things To See in " + location;
+    //
+    //     for (var counter = topFive.length - 1; counter >= 0; counter--) {
+    //         output += " Number " + topFive[counter].number + ": " + topFive[counter].caption + newline;
+    //     }
+    //     output += topFiveMoreInfo;
+    //     this.handler.state = states.TOPFIVE;
+    //     this.emit(':askWithCard', output, topFiveMoreInfo, cardTitle, output);
+    // },
+    // 'getNationalIntent': function () {
+    //     output = topFiveIntro;
+    //     var cardTitle = "Top Five Things To See in " + location;
+    //
+    //     for (var counter = topFive.length - 1; counter >= 0; counter--) {
+    //         output += " Number " + topFive[counter].number + ": " + topFive[counter].caption + newline;
+    //     }
+    //     output += topFiveMoreInfo;
+    //     this.handler.state = states.TOPFIVE;
+    //     this.emit(':askWithCard', output, topFiveMoreInfo, cardTitle, output);
+    // },
     'AMAZON.YesIntent': function () {
         output = HelpMessage;
         this.emit(':ask', output, HelpMessage);
@@ -139,44 +204,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         output = HelpMessage;
         this.emit(':ask', output, HelpMessage);
     },
-    'getNewsIntent': function () {
-        httpGet(location, function (response) {
-
-            // Parse the response into a JSON object ready to be formatted.
-            var responseData = JSON.parse(response);
-            var cardContent = "Data provided by New York Times\n\n";
-
-            // Check if we have correct data, If not create an error speech out to try again.
-            if (responseData == null) {
-                output = "There was a problem with getting data please try again";
-            }
-            else {
-                output = newsIntroMessage;
-
-                // If we have data.
-                for (var i = 0; i < responseData.response.docs.length; i++) {
-
-                    if (i < numberOfResults) {
-                        // Get the name and description JSON structure.
-                        var headline = responseData.response.docs[i].headline.main;
-                        var index = i + 1;
-
-                        output += " Headline " + index + ": " + headline + ";";
-
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
-                    }
-                }
-
-                output += " See your Alexa app for more information.";
-            }
-
-            var cardTitle = location + " News";
-
-            alexa.emit(':tellWithCard', output, cardTitle, cardContent);
-        });
-    },
-
     'AMAZON.RepeatIntent': function () {
         this.emit(':ask', output, HelpMessage);
     },
@@ -193,73 +220,73 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit(':ask', output, welcomeRepromt);
     }
 });
-
-var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
-    'getAttractionIntent': function () {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getAttractionIntent');
-    },
-    'getOverview': function () {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getOverview');
-    },
-    'getTopFiveIntent': function () {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState('getTopFiveIntent');
-    },
-    'AMAZON.HelpIntent': function () {
-        output = HelpMessage;
-        this.emit(':ask', output, HelpMessage);
-    },
-
-    'getMoreInfoIntent': function () {
-        var slotValue = this.event.request.intent.slots.attraction.value;
-        var index = parseInt(slotValue) - 1;
-
-        var selectedAttraction = topFive[index];
-        if (selectedAttraction) {
-
-            output = selectedAttraction.caption + ". " + selectedAttraction.more + ". " + hearMoreMessage;
-            var cardTitle = selectedAttraction.name;
-            var cardContent = selectedAttraction.caption + newline + newline + selectedAttraction.more + newline + newline + selectedAttraction.location + newline + newline + selectedAttraction.contact;
-
-            this.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
-        } else {
-            this.emit(':ask', noAttractionErrorMessage);
-        }
-    },
-
-    'AMAZON.YesIntent': function () {
-        output = getMoreInfoMessage;
-        alexa.emit(':ask', output, getMoreInfoRepromtMessage);
-    },
-    'AMAZON.NoIntent': function () {
-        output = goodbyeMessage;
-        alexa.emit(':tell', output);
-    },
-    'AMAZON.StopIntent': function () {
-        this.emit(':tell', goodbyeMessage);
-    },
-    'AMAZON.RepeatIntent': function () {
-        this.emit(':ask', output, HelpMessage);
-    },
-    'AMAZON.CancelIntent': function () {
-        // Use this function to clear up and save any data needed between sessions
-        this.emit(":tell", goodbyeMessage);
-    },
-    'SessionEndedRequest': function () {
-        // Use this function to clear up and save any data needed between sessions
-    },
-
-    'Unhandled': function () {
-        output = HelpMessage;
-        this.emit(':ask', output, welcomeRepromt);
-    }
-});
+//
+// var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
+//     'getAttractionIntent': function () {
+//         this.handler.state = states.SEARCHMODE;
+//         this.emitWithState('getAttractionIntent');
+//     },
+//     'getOverview': function () {
+//         this.handler.state = states.SEARCHMODE;
+//         this.emitWithState('getOverview');
+//     },
+//     'getTopFiveIntent': function () {
+//         this.handler.state = states.SEARCHMODE;
+//         this.emitWithState('getTopFiveIntent');
+//     },
+//     'AMAZON.HelpIntent': function () {
+//         output = HelpMessage;
+//         this.emit(':ask', output, HelpMessage);
+//     },
+//
+//     'getMoreInfoIntent': function () {
+//         var slotValue = this.event.request.intent.slots.attraction.value;
+//         var index = parseInt(slotValue) - 1;
+//
+//         var selectedAttraction = topFive[index];
+//         if (selectedAttraction) {
+//
+//             output = selectedAttraction.caption + ". " + selectedAttraction.more + ". " + hearMoreMessage;
+//             var cardTitle = selectedAttraction.name;
+//             var cardContent = selectedAttraction.caption + newline + newline + selectedAttraction.more + newline + newline + selectedAttraction.location + newline + newline + selectedAttraction.contact;
+//
+//             this.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+//         } else {
+//             this.emit(':ask', noSectionErrorMessage);
+//         }
+//     },
+//
+//     'AMAZON.YesIntent': function () {
+//         output = getMoreInfoMessage;
+//         alexa.emit(':ask', output, getMoreInfoRepromtMessage);
+//     },
+//     'AMAZON.NoIntent': function () {
+//         output = goodbyeMessage;
+//         alexa.emit(':tell', output);
+//     },
+//     'AMAZON.StopIntent': function () {
+//         this.emit(':tell', goodbyeMessage);
+//     },
+//     'AMAZON.RepeatIntent': function () {
+//         this.emit(':ask', output, HelpMessage);
+//     },
+//     'AMAZON.CancelIntent': function () {
+//         // Use this function to clear up and save any data needed between sessions
+//         this.emit(":tell", goodbyeMessage);
+//     },
+//     'SessionEndedRequest': function () {
+//         // Use this function to clear up and save any data needed between sessions
+//     },
+//
+//     'Unhandled': function () {
+//         output = HelpMessage;
+//         this.emit(':ask', output, welcomeRepromt);
+//     }
+// });
 
 exports.handler = function (event, context, callback) {
     alexa = Alexa.handler(event, context);
-    alexa.registerHandlers(newSessionHandlers, startSearchHandlers, topFiveHandlers);
+    alexa.registerHandlers(newSessionHandlers, startSearchHandlers);
     alexa.execute();
 };
 
@@ -268,9 +295,8 @@ function httpGet(query, callback) {
   console.log("/n QUERY: "+query);
 
     var options = {
-      //http://api.nytimes.com/svc/search/v2/articlesearch.json?q=seattle&sort=newest&api-key=
-        host: 'api.nytimes.com',
-        path: '/svc/search/v2/articlesearch.json?q=' + query + '&sort=newest&api-key=' + APIKey,
+        host: 'dev.miamifly.net',
+        path: '/alexa/' + location + '.json',
         method: 'GET'
     };
 
