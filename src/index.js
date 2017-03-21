@@ -9,7 +9,7 @@ var location = "Miami Herald";
 
 var numberOfResults = 5;
 
-var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
+var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
 var welcomeRepromt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
@@ -29,7 +29,7 @@ var goodbyeMessage = "OK, have a nice time in " + location + ".";
 
 var latestIntroMessage = "These are the " + numberOfResults + " latest headlines from the Miami Herald, you can read more on miamiherald.com. ";
 
-var hearMoreMessage = "Would you like to hear about what's happening on miamiherald.com?";
+var hearMoreMessage = "Would you like to hear about what else happening on miamiherald.com?";
 
 var newline = "\n";
 
@@ -128,12 +128,12 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     }
                 }
 
-                output += " See your Alexa app for more information.";
+                output += " See your miamiherald.com for more information.";
             }
 
             var cardTitle = "Latest News";
 
-            alexa.emit(':askWithCard', output, cardTitle, hearMoreMessage, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
         });
     },
     // 'getLocalIntent': function () {
