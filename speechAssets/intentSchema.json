@@ -1,6 +1,10 @@
 {
   "intents": [
     { "intent": "getLatestIntent", "slots": [] },
+    { "intent": "getLocalIntent", "slots": [] },
+    { "intent": "getSportsIntent", "slots": [] },
+    { "intent": "getDolphinsIntent", "slots": [] },
+    { "intent": "getNationalIntent", "slots": [] },
     { "intent": "AMAZON.YesIntent", "slots": [] },
     { "intent": "AMAZON.NoIntent", "slots": [] },
     { "intent": "AMAZON.HelpIntent", "slots": [] },

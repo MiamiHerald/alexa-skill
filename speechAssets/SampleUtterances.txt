@@ -1,10 +1,33 @@
-getLatestIntent tell me the local news
+getLatestIntent read the latest news
+getLatestIntent tell me the latest news
 getLatestIntent what is the latest news
-getLatestIntent the local news
 getLatestIntent the latest news
 getLatestIntent the news
-getLatestIntent news
-getLatestIntent local news
+getLatestIntent latest news
+
+getLocalIntent read the local news
+getLocalIntent tell me the local news
+getLocalIntent what is the local news
+getLocalIntent the local news
+getLocalIntent local news
+
+getSportsIntent read the sports news
+getSportsIntent tell me the sports news
+getSportsIntent what is the sports news
+getSportsIntent the sports news
+getSportsIntent sports news
+
+getDolphinsIntent read the dolphins news
+getDolphinsIntent tell me the dolphins news
+getDolphinsIntent what is the dolphins news
+getDolphinsIntent the dolphins news
+getDolphinsIntent dolphins news
+
+getNationalIntent read the national news
+getNationalIntent tell me the national news
+getNationalIntent what is the national news
+getNationalIntent the national news
+getNationalIntent national news
 
 AMAZON.StopIntent stop
 AMAZON.StopIntent off
