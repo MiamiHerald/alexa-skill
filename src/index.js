@@ -119,9 +119,10 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
                         var headline = responseData[i].titleText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Headline " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + ":" + description + ";";
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
