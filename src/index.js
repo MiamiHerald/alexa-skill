@@ -98,13 +98,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].description;
+                        var title = responseData[i].titleText;
+                        var description = responseData[i].description;
+                        var url = responseData[i].url;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + breakTime;
+                        output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
+                        cardContent += title + "\n";
+                        cardContent += description + "\n";
+                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
                     }
                 }
 
@@ -135,13 +138,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].description;
+                        var title = responseData[i].titleText;
+                        var description = responseData[i].description;
+                        var url = responseData[i].url;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + breakTime;
+                        output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
+                        cardContent += title + "\n";
+                        cardContent += description + "\n";
+                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
                     }
                 }
 
@@ -172,13 +178,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].description;
+                        var title = responseData[i].titleText;
+                        var description = responseData[i].description;
+                        var url = responseData[i].url;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + breakTime;
+                        output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
+                        cardContent += title + "\n";
+                        cardContent += description + "\n";
+                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
                     }
                 }
 
@@ -209,13 +218,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].description;
+                        var title = responseData[i].titleText;
+                        var description = responseData[i].description;
+                        var url = responseData[i].url;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + breakTime;
+                        output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
+                        cardContent += title + "\n";
+                        cardContent += description + "\n";
+                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
                     }
                 }
 
@@ -246,13 +258,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].description;
+                        var title = responseData[i].titleText;
+                        var description = responseData[i].description;
+                        var url = responseData[i].url;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + breakTime;
+                        output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += " Headline " + index + ".\n";
-                        cardContent += headline + ".\n\n";
+                        cardContent += title + "\n";
+                        cardContent += description + "\n";
+                        cardContent += "<a href=" + url + ">" + url + "</a>\n\n";
                     }
                 }
 
