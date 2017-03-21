@@ -25,13 +25,13 @@ var getMoreInfoMessage = "OK, " + getMoreInfoRepromtMessage;
 
 var goodbyeMessage = "OK, make sure to check back for the latest updates from the Miami Herald Newsroom.";
 
-var latestIntroMessage = "These are the " + numberOfResults + " latest headlines from the Miami Herald, you can read more on miamiherald.com. ";
-
 var hearMoreMessage = "Would you like to hear about what else happening on miamiherald.com?";
 
 var newline = "\n";
 
 var output = "";
+
+var breakTime = "<break time = '500ms'/>";
 
 var alexa;
 
@@ -91,24 +91,24 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = latestIntroMessage;
+                output = "These are the " + numberOfResults + " latest headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].mainText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + breakTime;
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
                     }
                 }
 
-                output += " You can ask me to read another section, or say stop to exit";
+                output += " Would you like me to read you another section? Or, say stop to exit";
             }
 
             var cardTitle = "Latest News";
@@ -128,17 +128,17 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = latestIntroMessage;
+                output = "These are the " + numberOfResults + " latest local headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].mainText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + breakTime;
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
@@ -165,17 +165,17 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = latestIntroMessage;
+                output = "These are the " + numberOfResults + " latest sports headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].mainText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + breakTime;
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
@@ -202,17 +202,17 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = latestIntroMessage;
+                output = "These are the " + numberOfResults + " latest dolphins headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].mainText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + breakTime;
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
@@ -239,17 +239,17 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = latestIntroMessage;
+                output = "These are the " + numberOfResults + " latest national headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
 
                     if (i < numberOfResults) {
                         // Get the name and description JSON structure.
-                        var headline = responseData[i].mainText;
+                        var headline = responseData[i].description;
                         var index = i + 1;
 
-                        output += " Article " + index + ": " + headline + ";";
+                        output += " Article " + index + ": " + headline + breakTime;
 
                         cardContent += " Headline " + index + ".\n";
                         cardContent += headline + ".\n\n";
