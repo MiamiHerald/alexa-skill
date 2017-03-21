@@ -6,27 +6,21 @@ var states = {
     TOPFIVE: '_TOPFIVE',
 };
 
-var location = "Seattle";
+var location = "Miami Herald";
 
-var numberOfResults = 3;
-
-var APIKey = "4844d21f760b47359945751b9f875877";
+var numberOfResults = 5;
 
 var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
 var welcomeRepromt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
-var locationOverview = "Seattle is a West Coast seaport city and the  seat of King County. With an estimated 684,451 residents as of 2015, Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America.  What else would you like to know?";
-
 var HelpMessage = "Here are some things you  can say: Read me local news. Tell me the sports headlines. What is the national news. What would you like to do?";
 
-var moreInformation = "See your Alexa app for more information."
+var moreInformation = "See Miamiherald.com for more information."
 
 var tryAgainMessage = "please try again."
 
 var noSectionErrorMessage = "There was an error finding that section, " + tryAgainMessage;
-
-var topFiveMoreInfo = " You can tell me a number for more information. For example open number one.";
 
 var getMoreInfoRepromtMessage = "What number attraction would you like to hear about?";
 
@@ -34,9 +28,9 @@ var getMoreInfoMessage = "OK, " + getMoreInfoRepromtMessage;
 
 var goodbyeMessage = "OK, have a nice time in " + location + ".";
 
-var newsIntroMessage = "These are the " + numberOfResults + " most recent " + location + " headlines, you can read more on your Alexa app. ";
+var latestIntroMessage = "These are the " + numberOfResults + " latest headlines from the Miami Herald, you can read more on miamiherald.com. ";
 
-var hearMoreMessage = "Would you like to hear about another top thing that you can do in " + location +"?";
+var hearMoreMessage = "Would you like to hear about what's happening on miamiherald.com?";
 
 var newline = "\n";
 
@@ -118,7 +112,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = newsIntroMessage;
+                output = latestIntroMessage;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
@@ -140,7 +134,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest News";
 
-            alexa.emit(':tellWithCard', output, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, cardTitle, hearMoreMessage, cardContent);
         });
     },
     // 'getLocalIntent': function () {
@@ -222,69 +216,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit(':ask', output, welcomeRepromt);
     }
 });
-//
-// var topFiveHandlers = Alexa.CreateStateHandler(states.TOPFIVE, {
-//     'getAttractionIntent': function () {
-//         this.handler.state = states.SEARCHMODE;
-//         this.emitWithState('getAttractionIntent');
-//     },
-//     'getOverview': function () {
-//         this.handler.state = states.SEARCHMODE;
-//         this.emitWithState('getOverview');
-//     },
-//     'getTopFiveIntent': function () {
-//         this.handler.state = states.SEARCHMODE;
-//         this.emitWithState('getTopFiveIntent');
-//     },
-//     'AMAZON.HelpIntent': function () {
-//         output = HelpMessage;
-//         this.emit(':ask', output, HelpMessage);
-//     },
-//
-//     'getMoreInfoIntent': function () {
-//         var slotValue = this.event.request.intent.slots.attraction.value;
-//         var index = parseInt(slotValue) - 1;
-//
-//         var selectedAttraction = topFive[index];
-//         if (selectedAttraction) {
-//
-//             output = selectedAttraction.caption + ". " + selectedAttraction.more + ". " + hearMoreMessage;
-//             var cardTitle = selectedAttraction.name;
-//             var cardContent = selectedAttraction.caption + newline + newline + selectedAttraction.more + newline + newline + selectedAttraction.location + newline + newline + selectedAttraction.contact;
-//
-//             this.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
-//         } else {
-//             this.emit(':ask', noSectionErrorMessage);
-//         }
-//     },
-//
-//     'AMAZON.YesIntent': function () {
-//         output = getMoreInfoMessage;
-//         alexa.emit(':ask', output, getMoreInfoRepromtMessage);
-//     },
-//     'AMAZON.NoIntent': function () {
-//         output = goodbyeMessage;
-//         alexa.emit(':tell', output);
-//     },
-//     'AMAZON.StopIntent': function () {
-//         this.emit(':tell', goodbyeMessage);
-//     },
-//     'AMAZON.RepeatIntent': function () {
-//         this.emit(':ask', output, HelpMessage);
-//     },
-//     'AMAZON.CancelIntent': function () {
-//         // Use this function to clear up and save any data needed between sessions
-//         this.emit(":tell", goodbyeMessage);
-//     },
-//     'SessionEndedRequest': function () {
-//         // Use this function to clear up and save any data needed between sessions
-//     },
-//
-//     'Unhandled': function () {
-//         output = HelpMessage;
-//         this.emit(':ask', output, welcomeRepromt);
-//     }
-// });
 
 exports.handler = function (event, context, callback) {
     alexa = Alexa.handler(event, context);
