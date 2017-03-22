@@ -21,7 +21,7 @@ var tryAgainMessage = "please try again."
 
 var noSectionErrorMessage = "There was an error finding that section, " + tryAgainMessage;
 
-var getMoreInfoRepromptMessage = "What number attraction would you like to hear about?";
+var getMoreInfoRepromptMessage = "What section would you like to hear about?";
 
 var getMoreInfoMessage = "OK, " + getMoreInfoRepromptMessage;
 
@@ -33,7 +33,7 @@ var newline = "\n";
 
 var output = "";
 
-var breakTime = "<break time = '500ms'/>";
+var breakTime = "<break time = '750ms'/>";
 
 var alexa;
 
