@@ -15,9 +15,9 @@ var listSectionsMessage = "Which section would you like to hear? Latest news, lo
 
 var HelpMessage = "Here are some things you  can say: Read me local news. Tell me the sports headlines. What is the national news. What would you like to do?";
 
-var moreInformation = "See Miamiherald.com for more information."
+var moreInformation = "See MiamiHerald.com for more information.";
 
-var tryAgainMessage = "please try again."
+var tryAgainMessage = "please try again.";
 
 var noSectionErrorMessage = "There was an error finding that section, " + tryAgainMessage;
 
@@ -27,7 +27,7 @@ var getMoreInfoMessage = "OK, " + getMoreInfoRepromptMessage;
 
 var goodbyeMessage = "OK, make sure to check back for the latest updates from the Miami Herald Newsroom. Goodbye.";
 
-var hearMoreMessage = "Would you like to hear about what else happening on miamiherald.com?";
+var hearMoreMessage = "Would you like to hear about what else happening on MiamiHerald.com?";
 
 var newline = "\n";
 
@@ -90,14 +90,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Data provided by Miami Herald\n\n";
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = "These are the " + numberOfResults + " latest headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
+                output = "These are the " + numberOfResults + " latest headlines from the Miami Herald. You can read more on MiamiHerald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
@@ -129,14 +129,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Data provided by Miami Herald\n\n";
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = "These are the " + numberOfResults + " latest local headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
+                output = "These are the " + numberOfResults + " latest local headlines from the Miami Herald. You can read more on MiamiHerald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
@@ -168,14 +168,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Data provided by Miami Herald\n\n";
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = "These are the " + numberOfResults + " latest sports headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
+                output = "These are the " + numberOfResults + " latest sports headlines from the Miami Herald. You can read more on MiamiHerald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
@@ -207,14 +207,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Data provided by Miami Herald\n\n";
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = "These are the " + numberOfResults + " latest dolphins headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
+                output = "These are the " + numberOfResults + " latest dolphins headlines from the Miami Herald. You can read more on MiamiHerald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
@@ -246,14 +246,14 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Data provided by Miami Herald\n\n";
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
                 output = "There was a problem with getting data please try again";
             }
             else {
-                output = "These are the " + numberOfResults + " latest national headlines from the Miami Herald. You can read more on miamiherald.com." + breakTime;
+                output = "These are the " + numberOfResults + " latest national headlines from the Miami Herald. You can read more on MiamiHerald.com." + breakTime;
 
                 // If we have data.
                 for (var i = 0; i < responseData.length; i++) {
