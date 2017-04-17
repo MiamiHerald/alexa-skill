@@ -31,4 +31,4 @@ getNationalIntent national news
 
 AMAZON.StopIntent stop
 AMAZON.StopIntent off
-AMAZON.StopIntent shut up
+AMAZON.StopIntent cancel

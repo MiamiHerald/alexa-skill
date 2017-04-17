@@ -9,7 +9,7 @@ var numberOfResults = 5;
 
 var welcomeMessage = "Welcome to the Miami Herald Newsroom. You can ask me for latest news, local news, sports news, dolphins news, national news or say help. What will it be?";
 
-var welcomeReprompt = "You can ask me for an latest news, local news, sports, dolphins news, national news or say help. What will it be?";
+var welcomeReprompt = "You can ask me for latest news, local news, sports, dolphins news, national news or say help. What will it be?";
 
 var listSectionsMessage = "Which section would you like to hear? Latest news, local news, sports news, dolphins news or national news";
 
