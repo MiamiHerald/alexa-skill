@@ -37,6 +37,11 @@ var breakTime = "<break time = '750ms'/>";
 
 var alexa;
 
+var imageObj = {
+    smallImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-sm',
+    largeImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-lg'
+};
+
 var newSessionHandlers = {
     'LaunchRequest': function () {
         this.handler.state = states.SEARCHMODE;
@@ -121,7 +126,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
     'getLocalIntent': function () {
@@ -160,7 +165,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Local News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
     'getSportsIntent': function () {
@@ -199,7 +204,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Sports News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
     'getDolphinsIntent': function () {
@@ -238,7 +243,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Dolphins News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
     'getNationalIntent': function () {
@@ -277,7 +282,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest National News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
     'listSectionsIntent': function () {
