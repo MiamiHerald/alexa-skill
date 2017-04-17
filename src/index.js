@@ -38,8 +38,8 @@ var breakTime = "<break time = '750ms'/>";
 var alexa;
 
 var imageObj = {
-    smallImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-sm',
-    largeImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-lg'
+  smallImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-sm',
+  largeImageUrl: 'https://media.miamiherald.com/static/media/projects/2017/alexa-test/images/herald-logo-lg'
 };
 
 var newSessionHandlers = {
