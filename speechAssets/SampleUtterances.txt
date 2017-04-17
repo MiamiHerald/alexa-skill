@@ -1,34 +1,73 @@
+getLatestIntent read me latest news
 getLatestIntent read the latest news
 getLatestIntent tell me the latest news
+getLatestIntent tell me the latest headlines
 getLatestIntent what is the latest news
 getLatestIntent the latest news
 getLatestIntent the news
 getLatestIntent latest news
+getLatestIntent what's the latest news
+getLatestIntent get me the latest news
+getLatestIntent give me the latest news
+getLatestIntent i want the latest news
+getLatestIntent what the latest news is
 
+getLocalIntent read me local news
 getLocalIntent read the local news
 getLocalIntent tell me the local news
+getLocalIntent tell me the local headlines
 getLocalIntent what is the local news
 getLocalIntent the local news
 getLocalIntent local news
+getLocalIntent what's the local news
+getLocalIntent what the local news is
+getLocalIntent get me the local news
+getLocalIntent give me the local news
+getLocalIntent i want the local news
 
+getSportsIntent read me sports news
 getSportsIntent read the sports news
 getSportsIntent tell me the sports news
+getSportsIntent tell me the sports headlines
 getSportsIntent what is the sports news
 getSportsIntent the sports news
 getSportsIntent sports news
+getSportsIntent what's the sports news
+getSportsIntent what the sports news is
+getSportsIntent get me the sports news
+getSportsIntent give me the sports news
+getSportsIntent i want the sports news
 
+getDolphinsIntent read me dolphins news
 getDolphinsIntent read the dolphins news
 getDolphinsIntent tell me the dolphins news
+getDolphinsIntent tell me the dolphins headlines
 getDolphinsIntent what is the dolphins news
 getDolphinsIntent the dolphins news
 getDolphinsIntent dolphins news
+getDolphinsIntent what's the dolphins news
+getDolphinsIntent what the dolphins news is
+getDolphinsIntent get me the dolphins news
+getDolphinsIntent give me the dolphins news
+getDolphinsIntent i want the dolphins news
 
+getNationalIntent read me national news
 getNationalIntent read the national news
 getNationalIntent tell me the national news
+getNationalIntent tell me the national headlines
 getNationalIntent what is the national news
 getNationalIntent the national news
 getNationalIntent national news
+getNationalIntent what's the national news
+getNationalIntent what the national news is
+getNationalIntent get me the national news
+getNationalIntent give me the national news
+getNationalIntent i want the national news
 
-AMAZON.StopIntent stop
-AMAZON.StopIntent off
-AMAZON.StopIntent cancel
+listSectionsIntent read the sections
+listSectionsIntent read me another section
+listSectionsIntent list sections
+listSectionsIntent list all sections
+listSectionsIntent read another section
+listSectionsIntent go to sections
+listSectionsIntent what are the sections
