@@ -38,8 +38,8 @@ var breakTime = "<break time = '750ms'/>";
 var alexa;
 
 var imageObj = {
-  smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-  largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
+  smallImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg",
+  largeImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg"
 };
 
 var newSessionHandlers = {
@@ -126,11 +126,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest News";
 
-            var imageObj = {
-              smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-              largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
-            };
-
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
@@ -169,11 +164,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             }
 
             var cardTitle = "Latest Local News";
-
-            var imageObj = {
-              smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-              largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
-            };
 
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
@@ -214,11 +204,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Sports News";
 
-            var imageObj = {
-              smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-              largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
-            };
-
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
@@ -258,11 +243,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Dolphins News";
 
-            var imageObj = {
-              smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-              largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
-            };
-
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
     },
@@ -301,11 +281,6 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
             }
 
             var cardTitle = "Latest National News";
-
-            var imageObj = {
-              smallImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg',
-              largeImageUrl: 'https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg'
-            };
 
             alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
         });
