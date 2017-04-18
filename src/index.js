@@ -126,7 +126,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj.smallImageUrl, imageObj.largeImageUrl);
         });
     },
     'getLocalIntent': function () {
@@ -165,7 +165,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Local News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj.smallImageUrl, imageObj.largeImageUrl);
         });
     },
     'getSportsIntent': function () {
@@ -204,7 +204,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Sports News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj.smallImageUrl, imageObj.largeImageUrl);
         });
     },
     'getDolphinsIntent': function () {
@@ -243,7 +243,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest Dolphins News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj.smallImageUrl, imageObj.largeImageUrl);
         });
     },
     'getNationalIntent': function () {
@@ -282,7 +282,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             var cardTitle = "Latest National News";
 
-            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj);
+            alexa.emit(':askWithCard', output, hearMoreMessage, cardTitle, cardContent, imageObj.smallImageUrl, imageObj.largeImageUrl);
         });
     },
     'listSectionsIntent': function () {
