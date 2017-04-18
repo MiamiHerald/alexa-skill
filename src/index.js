@@ -38,8 +38,8 @@ var breakTime = "<break time = '750ms'/>";
 var alexa;
 
 var imageObj = {
-  smallImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.jpg",
-  largeImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.jpg"
+  smallImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-sm.png",
+  largeImageUrl: "https://s3.amazonaws.com/miami-herald-logo/herald-logo-lg.png"
 };
 
 var newSessionHandlers = {
