@@ -95,7 +95,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
             // Parse the response into a JSON object ready to be formatted.
             var responseData = JSON.parse(response);
-            var cardContent = "Read more on MiamiHerald.com" + newLine + newLine;
+            var cardContent = "Read more on MiamiHerald.com\n\n";
 
             // Check if we have correct data, If not create an error speech out to try again.
             if (responseData == null) {
@@ -116,7 +116,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += title + "\n";
+                        cardContent += "Article " + index + ": " + title + "\n";
                         cardContent += description + "\n\n";
                     }
                 }
@@ -155,7 +155,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += title + "\n";
+                        cardContent += "Article " + index + ": " + title + "\n";
                         cardContent += description + "\n\n";
                     }
                 }
@@ -194,7 +194,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += title + "\n";
+                        cardContent += "Article " + index + ": " + title + "\n";
                         cardContent += description + "\n\n";
                     }
                 }
@@ -233,7 +233,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += title + "\n";
+                        cardContent += "Article " + index + ": " + title + "\n";
                         cardContent += description + "\n\n";
                     }
                 }
@@ -272,7 +272,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 
                         output += " Article " + index + ": " + description + breakTime;
 
-                        cardContent += title + "\n";
+                        cardContent += "Article " + index + ": " + title + "\n";
                         cardContent += description + "\n\n";
                     }
                 }
